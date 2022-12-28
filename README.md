@@ -1,4 +1,8 @@
 # Gizmo
+## How to install?
+Download the last [Gizmo.dll here](https://github.com/galathil/Gizmo/releases/download/1.1.0/Gizmo.dll) and place it in BepInEx plugins folder.
+
+## What is Gizmo?
 An intuitive advanced building tool
 
 Client side only.
