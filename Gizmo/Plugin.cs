@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Gizmo
 {
-    [BepInPlugin("com.rolopogo.Gizmo","Gizmo", "1.0.0")]
+    [BepInPlugin("com.rolopogo.Gizmo","Gizmo", "1.1.0")]
     public class Plugin : BaseUnityPlugin
     {
         public static Plugin instance;
@@ -37,6 +37,7 @@ namespace Gizmo
         private ConfigEntry<string> xKey;
         private ConfigEntry<string> zKey;
         private ConfigEntry<string> resetKey;
+        private ConfigEntry<string> resetAllKey;
 
         float snapAngle => 180f / snapDivisions.Value;
 
@@ -49,6 +50,7 @@ namespace Gizmo
             xKey = Config.Bind<string>("General", "xKey", "LeftShift", "Hold this key to rotate in the x plane (red circle)");
             zKey = Config.Bind<string>("General", "zKey", "LeftAlt", "Hold this key to rotate in the z plane (blue circle)");
             resetKey = Config.Bind<string>("General", "resetKey", "V", "Press this key to reset the selected axis to zero rotation");
+            resetAllKey = Config.Bind<string>("General", "resetAllKey", "B", "Press this key to reset ALL axis to zero rotation");
 
             var bundle = AssetBundle.LoadFromMemory(ResourceUtils.GetResource(Assembly.GetExecutingAssembly(), "Gizmo.Resources.gizmos"));
             gizmoPrefab = bundle.LoadAsset<GameObject>("GizmoRoot");
@@ -101,6 +103,13 @@ namespace Gizmo
             else
             {
                 HandleAxisInput(scrollWheelInput, ref yRot, yGizmo);
+            }
+
+            if (Enum.TryParse<KeyCode>(resetAllKey.Value, out var resetAllKeyCode) && Input.GetKey(resetAllKeyCode))
+            {
+                xRot = 0;
+                zRot = 0;
+                yRot = 0;
             }
 
             xGizmoRoot.localRotation = Quaternion.Euler(xRot * snapAngle, 0, 0);
