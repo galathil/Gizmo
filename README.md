@@ -15,9 +15,10 @@ Client side only.
 - Rotate in the Z (Blue) plane with LAlt (by default)
 - Reset an axis by holding its modifier and hitting V (by default)
 
-Sample Video: https://streamable.com/wio6pk
-Source: https://github.com/rolopogo/ValheimMods
+## Who created Gizmo?
+Gizmo (not reloaded version) was created by https://github.com/rolopogo/ValheimMods
 
-Install with BepInEx
+## Patchnotes - Why create this version?
+ - Make Gizmo compatible with "Heart and home" and "Mistlands" updates
+ - Add shortcut (default B) to reset all axes
 
-Copy ExploreTogether.dll into Valheim/BepInEx/plugins
